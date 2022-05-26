@@ -182,7 +182,7 @@ class EWC_Contracts {
 						'poNumber'         => $order->get_order_number(),
 						'transactionTotal' => [
 							'currencyCode' => 'USD',
-							'amount'       => $order->get_total()*100
+							'amount'       => round($order->get_total()*100, 0)
 						],
 						'customer'         => [
 							'name'            => $order->get_billing_first_name() . ' ' . $order->get_billing_last_name(),
