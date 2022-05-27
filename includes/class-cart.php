@@ -128,7 +128,7 @@ class EWC_Cart {
 	public function update_price($cart_object){
 		$cart_items = $cart_object->cart_contents;
 
-		if ( ! empty( $cart_items ) ) {
+		if ( empty( $cart_items ) === false ) {
 
 			foreach ( $cart_items as $key => $value ) {
 				if(isset($value['extendData'])){

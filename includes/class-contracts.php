@@ -132,7 +132,7 @@ class EWC_Contracts {
 
 		$sent = get_post_meta($order_id, '_extend_contracts', true);
 
-		if(!$sent){
+		if( empty( $sent ) === true ){
 			$this->send_contracts($order_id);
 		}
 
@@ -143,7 +143,7 @@ class EWC_Contracts {
 	// @param $order : order object, default to null
 	private function send_contracts( $order_id, $order = null) {
 
-		if($order === null){
+		if( empty($order) === true ){
 			$order = wc_get_order($order_id);
 		}
 		$items     = $order->get_items();
@@ -167,12 +167,12 @@ class EWC_Contracts {
 			}
 		}
 
-		if ( ! empty( $contracts ) ) {
+		if ( empty( $contracts ) === false ) {
 			$contract_ids = [];
 			foreach ( $contracts as $item ) {
 				$item_id = $item->get_id();
 				$data = $item->get_meta( '_extend_data' );
-				if ( $data ) {
+				if ( empty($data) === false ) {
 
 					$covered_id = $data['covered_product_id'];
 					$covered[] = $covered_id;
@@ -244,7 +244,7 @@ class EWC_Contracts {
 
 			}
 
-			if(!empty($contract_ids)){
+			if( empty( $contract_ids ) === false ){
 
 				update_post_meta($order_id, '_extend_contracts', $contract_ids);
 
@@ -260,7 +260,7 @@ class EWC_Contracts {
 
 		$contracts = get_post_meta($order_id, '_extend_contracts', true);
 
-		if($contracts){
+		if( empty($contracts) === false ){
 
 			$refund_details = [];
 			foreach($contracts as $item_id=>$contract_id){
