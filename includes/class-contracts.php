@@ -43,7 +43,7 @@ class EWC_Contracts {
 	public function hooks() {
 		$isContractsEnabled = get_option('wc_extend_contracts_enabled');
 		if($isContractsEnabled == 'yes') {
-			add_action('woocommerce_order_status_completed', [$this, 'maybe_send_contract']);
+			add_action('woocommerce_order_status_partial-shipped', [$this, 'maybe_send_contract']);
 			add_action('woocommerce_order_fully_refunded', [$this, 'process_full_refund']);
 			add_action('woocommerce_order_status_refunded', [$this, 'process_full_refund']);
 			add_action('woocommerce_create_refund', [$this, 'process_partial_refund'], 10, 2);
