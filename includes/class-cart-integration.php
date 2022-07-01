@@ -48,7 +48,7 @@ class EWC_Cart_Integration {
 		add_action('woocommerce_after_cart', [$this, 'cart_offers']);
 
 		//after cart item name add offer element
-		add_action('woocommerce_after_cart_item_name', [$this, 'after_cart_item_name'], 10, 2);
+		add_action('wc_extend_cart_offers', [$this, 'after_cart_item_name'], 10, 2);
 
 		//ensure unique cart items for warranties
 		add_filter('woocommerce_add_cart_item_data', [$this, 'unique_cart_items'], 10, 2);
